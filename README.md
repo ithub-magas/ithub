@@ -1,6 +1,6 @@
 # **Проект: Научная социальная сеть `MagasITHUB`**  
 > Разрабатывается студентами колледжа **IT Hub Magas**  
-> Домен проекта: [**magasithub.com**](https://magasithub.com)
+> Домен проекта: [**magasithub.com**]([https://.com](https://ithub-mu.vercel.app))
 
 ---
 
