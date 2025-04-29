@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #6a1b9a;
+  --primary-light: #9a6ff2;
+  --primary-dark: #5a28b5;
+  --secondary: #f0ebfd;
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --text-light: #999999;
+  --white: #ffffff;
+  --border: #e0e0e0;
+  --success: #4caf50;
+  --warning: #ff9800;
+  --danger: #f44336;
+}
