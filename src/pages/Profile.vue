@@ -169,21 +169,6 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
-:root {
-    --primary: #7b38e8;
-    --primary-light: #9d65f3;
-    --primary-dark: #5c1bc0;
-    --secondary: #f5f2ff;
-    --white: #ffffff;
-    --text-primary: #2d2d2d;
-    --text-secondary: #6b6b6b;
-    --border: #e0e0e0;
-    --success: #4caf50;
-    --warning: #ff9800;
-    --danger: #f44336;
-    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
 .student-profile {
     font-family: 'Roboto', Arial, sans-serif;
     max-width: 1200px;
