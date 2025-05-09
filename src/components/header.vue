@@ -1,139 +1,350 @@
 <template>
-    <header class="main-header">
-      <div class="header-container">
-        <RouterLink to="/authorization" class="logo-link">
-          <svg class="logo-icon" viewBox="0 0 24 24">
-            <path d="M12 3L1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
-          </svg>
-          <span class="logo-text">IThub Magas</span>
-        </RouterLink>
-        
-        <nav class="nav-links">
-          <RouterLink to="/authorization" class="nav-link active">
-            <svg class="nav-icon" viewBox="0 0 24 24">
-              <path d="M12 15c1.66 0 3-1.34 3-3V6c0-1.66-1.34-3-3-3S9 4.34 9 6v6c0 1.66 1.34 3 3 3zm5.91-3c-.49 0-.9.36-.98.85C16.52 15.22 14.47 17 12 17s-4.52-1.78-4.93-4.15c-.08-.49-.49-.85-.98-.85-.61 0-1.09.54-1 1.14.49 3 2.89 5.35 5.91 5.78V21c0 .55.45 1 1 1s1-.45 1-1v-2.08c3.02-.43 5.42-2.78 5.91-5.78.1-.6-.39-1.14-1-1.14z"/>
-            </svg>
-            Авторизация
-          </RouterLink>
-          <RouterLink to="/dev" class="nav-link">
-            <svg class="nav-icon" viewBox="0 0 24 24">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
-            </svg>
-           Разработчики
-          </RouterLink>
-        </nav>
+  <header>
+    <div class="header-cont">
+      <div class="logo" @click="goToHome">
+        KABIR
       </div>
-    </header>
-  </template>
-  
-  <script>
-  import { RouterLink } from 'vue-router';
-  export default {
-    name: 'MainHeader',
-    components: { RouterLink }
-  }
-  </script>
-  
-  <style scoped>
-  .main-header {
-    height: 70px;
-    width: 100%;
-    background-color: #6a1b9a; 
 
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      <div class="menu-toggle" @click="toggleMenu">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+
+      <nav :class="{ 'active': isMenuOpen }">
+        <router-link to="/" @click="closeMenu">Главная</router-link>
+        <router-link to="/projects" @click="closeMenu">Проекты</router-link>
+        <router-link to="/resume" @click="closeMenu">Портфолио</router-link>
+        <router-link to="/forum" @click="closeMenu">Форум</router-link>
+        <router-link to="/contacts" @click="closeMenu">Контакты</router-link>
+        <router-link to="/about" @click="closeMenu">О нас</router-link>
+      </nav>
+
+      <div class="actions" :class="{ 'active': isMenuOpen }">
+        <div class="buttons" v-if="!isUser">
+          <div class="login" @click="goToLogin">Вход</div>
+          <div class="register" @click="goToRegister">Регистрация</div>
+        </div>
+        <div v-else>
+          <div class="avatar" @click="goToProfile">
+            <img :src="userAvatar" alt="avatar" v-if="userAvatar">
+            <div v-else>{{ userInitials }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+</template>
+
+<script>
+import { useAuthStore } from '../stores/auth';
+import { computed, ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+export default {
+  setup() {
+    const authStore = useAuthStore();
+    const router = useRouter();
+    const isMenuOpen = ref(false);
+
+    const isUser = computed(() => authStore.isAuthenticated);
+    const userAvatar = computed(() => authStore.student?.avatar || '');
+    const userInitials = computed(() => authStore.userInitials );
+
+    const goToHome = () => {
+      router.push("/");
+      closeMenu();
+    };
+
+    const goToLogin = () => {
+      router.push("/authorization");
+      closeMenu();
+    };
+
+    const goToRegister = () => {
+      router.push("/");
+      closeMenu();
+    };
+
+    const goToProfile = () => {
+      router.push("/profile");
+      closeMenu();
+    };
+
+    const toggleMenu = () => {
+      isMenuOpen.value = !isMenuOpen.value;
+    };
+
+    const closeMenu = () => {
+      isMenuOpen.value = false;
+    };
+
+    return {
+      isUser,
+      userAvatar,
+      userInitials,
+      isMenuOpen,
+      goToHome,
+      goToLogin,
+      goToRegister,
+      goToProfile,
+      toggleMenu,
+      closeMenu,
+    };
   }
-  
-  .header-container {
-    max-width: 1200px;
-    height: 100%;
+}
+</script>
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Unbounded:wght@200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Unbounded:wght@200..900&display=swap');
+
+header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  background-color: #0F0B1F;
+  position: relative;
+}
+
+.header-cont {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 95%;
+  position: relative;
+}
+
+.logo {
+  font-family: "Unbounded";
+  font-weight: 700;
+  font-size: 32px;
+  color: #7F5EFF;
+  user-select: none;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.menu-toggle .bar {
+  height: 3px;
+  width: 100%;
+  background-color: #7F5EFF;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+nav {
+  display: flex;
+}
+
+nav a {
+  font-family: "Inter";
+  font-weight: 600;
+  text-decoration: none;
+  color: #FFFFFF;
+  transition: 0.3s;
+  user-select: none;
+}
+
+nav a.router-link-active {
+  position: relative;
+}
+
+nav a.router-link-active::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  top: 20px;
+  width: 90%;
+  height: 2px;
+  background-color: #7F5EFF;
+  border-radius: 5px;
+  transform: translateX(-50%);
+}
+
+nav a:hover {
+  color: #7F5EFF;
+}
+
+nav a:not(:first-child) {
+  margin-left: 60px;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+}
+
+.login {
+  background-color: #7F5EFF;
+  border: 2px solid transparent;
+  border-radius: 7px;
+  padding: 12px 31px;
+  font-family: "Inter";
+  font-weight: 500;
+  color: #FFFFFF;
+  width: fit-content;
+  user-select: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login:hover {
+  background-color: transparent;
+  border: 2px solid #7F5EFF;
+}
+
+.register {
+  border: 2px solid #7F5EFF;
+  border-radius: 7px;
+  padding: 12px 31px;
+  font-family: "Inter";
+  font-weight: 500;
+  color: #FFFFFF;
+  width: fit-content;
+  user-select: none;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-left: 32px;
+}
+
+.register:hover {
+  background-color: #7F5EFF;
+}
+
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  user-select: none;
+  cursor: pointer;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+}
+
+.avatar div {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  user-select: none;
+  color: #7F5EFF;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  background-color: rgb(242, 224, 255);
+}
+
+@media (max-width: 1100px) {
+  nav a:not(:first-child) {
+    margin-left: 30px;
+  }
+
+  .login,
+  .register {
+    padding: 6px 15px;
+  }
+
+  .register {
+    margin-left: 16px;
+  }
+}
+
+@media (max-width: 964px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  nav,
+  .actions {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #0F0B1F;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+    z-index: 99;
+  }
+
+  .actions{
+    background-color: transparent !important;
+  }
+
+  nav.active,
+  .actions.active {
+    transform: translateX(0);
+  }
+
+  nav a {
+    margin: 15px 0 !important;
+    font-size: 20px;
+  }
+
+  nav a.router-link-active::after {
+    top: 25px;
+  }
+
+  .buttons {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* .register {
+    margin-left: 0;
+    margin-top: 20px;
+  } */
+
+  .actions {
+    top: 88vh;
     margin: 0 auto;
-    padding: 0 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
   }
-  
-  .logo-link {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: white;
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: opacity 0.3s ease;
+
+  .header-cont {
+    padding-bottom: 20px;
   }
-  
-  .logo-link:hover {
-    opacity: 0.9;
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 24px;
   }
-  
-  .logo-icon {
-    width: 28px;
-    height: 28px;
-    fill: currentColor;
-    margin-right: 10px;
+
+  .login,
+  .register {
+    padding: 10px 20px;
+    font-size: 14px;
   }
-  
-  .logo-text {
-    font-family: 'Roboto', sans-serif;
-    letter-spacing: 0.5px;
+
+  .avatar {
+    width: 40px;
+    height: 40px;
   }
-  
-  .nav-links {
-    display: flex;
-    gap: 20px;
-  }
-  
-  .nav-link {
-    display: flex;
-    align-items: center;
-    color: rgba(255, 255, 255, 0.9);
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-weight: 500;
-    padding: 8px 12px;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-  }
-  
-  .nav-link:hover {
-    color: white;
-    background-color: rgba(255, 255, 255, 0.15);
-  }
-  
-  .nav-link.active {
-    color: white;
-    background-color: rgba(255, 255, 255, 0.25);
-    font-weight: 600;
-  }
-  
-  .nav-icon {
-    width: 20px;
-    height: 20px;
-    fill: currentColor;
-    margin-right: 8px;
-  }
-  
-  @media (max-width: 768px) {
-    .header-container {
-      padding: 0 15px;
-    }
-    
-    .logo-text {
-      display: none;
-    }
-    
-    .nav-links {
-      gap: 10px;
-    }
-    
-    .nav-link {
-      font-size: 0;
-      padding: 8px;
-    }
-    
-    .nav-icon {
-      margin-right: 0;
-    }
-  }
-  </style>
+}
+</style>

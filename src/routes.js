@@ -4,13 +4,15 @@ import main from "./pages/main.vue";
 import developers from "./pages/developers.vue";
 import Profile from "./pages/Profile.vue";
 import Resume from "./pages/Resume.vue";
+import Projects from "./pages/Projects.vue";
 
 const routes = [
   { path: "/", component: main },
   { path: "/authorization", component: authorization },
   { path: "/dev", component: developers },
   { path: "/profile", component: Profile },
-  { path: "/resume", component: Resume }
+  { path: "/resume", component: Resume },
+  { path: "/projects", component: Projects }
 ];
 
 const router = createRouter({
