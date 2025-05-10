@@ -316,11 +316,6 @@ nav a:not(:first-child) {
     justify-content: center;
   }
 
-  /* .register {
-    margin-left: 0;
-    margin-top: 20px;
-  } */
-
   .actions {
     top: 88vh;
     margin: 0 auto;
