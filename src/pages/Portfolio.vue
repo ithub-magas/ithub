@@ -16,19 +16,81 @@
             </div>
             <div class="main__actions-bar">
                 <button class="main__actions-bar__button" data-content="my" @click="switchingBlocks($event)">Моё</button>
-                <button class="main__actions-bar__button" data-content="projects" @click="switchingBlocks($event)">Проекты</button>
+                <button class="main__actions-bar__button active" data-content="projects" @click="switchingBlocks($event)">Проекты</button>
                 <button class="main__actions-bar__button" data-content="create" @click="switchingBlocks($event)">Создать проект</button>
                 <button class="main__actions-bar__button"data-content="stats" @click="switchingBlocks($event)">Ваша статистика</button>
             </div>
             <div class="main__content">
                 <div class="main__my" v-if="block == 'my'">
-                    <h1>My</h1>
+                    <div class="project-container" v-for="item in myProjects">
+                        <img :src="item.poster" alt="" class="project-container__image">
+                        <div class="project-container__content">
+                            <div class="project-container__user-info">
+                                <img class="project-container__user-avatar" :src="item.user.avatar" alt="avatar">
+                                <span class="project-container__user-name">{{ item.user.name }}</span>
+                            </div>
+                            <div class="project-container__stats">
+                                <div class="project-container__stats-item">
+                                    <img class="project-container__stat-icon" src="../assets/likeIcon.svg" alt="likes">
+                                    <span class="project-container__stat-count">{{ item.likes }}</span>
+                                </div>
+                                <div class="project-container__stats-item">
+                                    <img class="project-container__stat-icon" src="../assets/viewsIcon.svg" alt="views">
+                                    <span class="project-container__stat-count">{{ item.views }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="main__projects" v-if="block == 'projects'">
-                    <h1>Projects</h1>
+                    <div class="project-container" v-for="item in projects">
+                        <img :src="item.poster" alt="" class="project-container__image">
+                        <div class="project-container__content">
+                            <div class="project-container__user-info">
+                                <img class="project-container__user-avatar" :src="item.user.avatar" alt="avatar">
+                                <span class="project-container__user-name">{{ item.user.name }}</span>
+                            </div>
+                            <div class="project-container__stats">
+                                <div class="project-container__stats-item">
+                                    <img class="project-container__stat-icon" src="../assets/likeIcon.svg" alt="likes">
+                                    <span class="project-container__stat-count">{{ item.likes }}</span>
+                                </div>
+                                <div class="project-container__stats-item">
+                                    <img class="project-container__stat-icon" src="../assets/viewsIcon.svg" alt="views">
+                                    <span class="project-container__stat-count">{{ item.views }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="main__create" v-if="block == 'create'">
-                    <h1>Create</h1>
+                    <h2 class="main__create-title">Начните создавать проект:</h2>
+                    <div class="main__create-options">
+                        <div class="create-option">
+                            <button class="create-option__button">
+                                <img class="create-option__icon" src="../assets/imagesIcon.svg" alt="icon">
+                            </button>
+                            <span class="create-option__label"></span>
+                        </div>
+                        <div class="create-option">
+                            <button class="create-option__button">
+                                <img class="create-option__icon" src="../assets/" alt="icon">
+                            </button>
+                            <span class="create-option__label"></span>
+                        </div>
+                        <div class="create-option">
+                            <button class="create-option__button">
+                                <img class="create-option__icon" src="../assets/videoIcon.svg" alt="icon">
+                            </button>
+                            <span class="create-option__label"></span>
+                        </div>
+                        <div class="create-option">
+                            <button class="create-option__button">
+                                <img class="create-option__icon" src="../assets/3dIcon.svg" alt="icon">
+                            </button>
+                            <span class="create-option__label"></span>
+                        </div>
+                    </div>
                 </div>
                 <div class="main__stats" v-if="block == 'stats'">
                     <h1>Stats</h1>
@@ -45,19 +107,77 @@
             return{
                 block: "projects",
                 student: {},
-                projects: [
+                myProjects: [
                     {
-                        poster: "",
+                        poster: "http://localhost:5000/media/images/image3.png",
+                        user: {
+                            avatar: "http://localhost:5000/media/images/image4.png",
+                            name: "Ahmed"
+                        },
                         likes: 12,
                         views: 1000
-                    }
+                    },
+                    {
+                        poster: "http://localhost:5000/media/images/image2.png",
+                        user: {
+                            avatar: "http://localhost:5000/media/images/image3.png",
+                            name: "Ahmed"
+                        },
+                        likes: 12,
+                        views: 1000
+                    },
+                    {
+                        poster: "http://localhost:5000/media/images/image4.png",
+                        user: {
+                            avatar: "http://localhost:5000/media/images/image2.png",
+                            name: "Ahmed"
+                        },
+                        likes: 12,
+                        views: 1000
+                    },
+                ],
+                projects: [
+                    {
+                        poster: "http://localhost:5000/media/images/image2.png",
+                        user: {
+                            avatar: "http://localhost:5000/media/images/image3.png",
+                            name: "Arsamak"
+                        },
+                        likes: 12,
+                        views: 1000
+                    },
+                    {
+                        poster: "http://localhost:5000/media/images/image3.png",
+                        user: {
+                            avatar: "http://localhost:5000/media/images/image4.png",
+                            name: "Musa"
+                        },
+                        likes: 12,
+                        views: 1000
+                    },
+                    {
+                        poster: "http://localhost:5000/media/images/image4.png",
+                        user: {
+                            avatar: "http://localhost:5000/media/images/image2.png",
+                            name: "Adam"
+                        },
+                        likes: 12,
+                        views: 1000
+                    },
                 ]
             }
         },
         methods: {
-            switchingBlocks(event){
+            switchingBlocks(event) {
                 const contentData = event.target.dataset.content;
                 this.block = contentData;
+                
+                const buttons = document.querySelectorAll('.main__actions-bar__button');
+                
+                buttons.forEach(button => {
+                    button.classList.remove('active');
+                });
+                event.target.classList.add('active');
             }
         },
         mounted(){
@@ -100,6 +220,7 @@
         width: 166px;
         height: 166px;
         border-radius: 50%;
+        object-fit: cover;
     }
     .search{
         width: 100%;
@@ -130,22 +251,121 @@
     }
 
     .main__actions-bar{
-        width: 66%;
+        max-width: 1200px;
         margin-inline: auto;
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 60px;
     }
     .main__actions-bar__button{
         border: none;
         background: transparent;
         font-size: 22px;
         font-weight: 500;
+        cursor: pointer;
     }
     .active{
-        border-bottom: solid 1px;
+        text-decoration: underline;
+        text-underline-offset: 10px;
     }
-    .main__content{
-        width: 80%;
+    .main__content {
+        max-width: 1600px;
+        width: 100%;
         margin-inline: auto;
+        padding: 0 20px;
+    }
+
+    .main__projects {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 50px;
+    }
+
+    .project-container {
+        display: flex;
+        flex-direction: column;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .project-container:hover {
+        transform: translateY(-5px);
+    }
+
+    .project-container__image {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        display: block;
+    }
+
+    .project-container__content{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 15px;
+    }
+    .project-container__user-info {
+        display: flex;
+        align-items: center;
+        background: #fff;
+    }
+
+    .project-container__user-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 12px;
+        object-fit: cover;
+    }
+
+    .project-container__user-name {
+        font-size: 16px;
+        font-weight: 500;
+    }
+    .project-container__stats{
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        justify-content: end;
+    }
+    .project-container__stats-item{
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+    .project-container__stat-icon{
+        width: 20px;
+    }
+    .project-container__stat-count{
+        font-size: 16px;
+    }
+
+    .main__my {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 50px;
+    }
+
+    .main__create {
+        width: 100%;
+        display: grid;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        justify-content: center;
+        padding: 20px;
+        border-radius: 10px;
+    }
+    .main__create-title{
+        font-family: Inter;
+        font-size: 32px;
+        font-weight: 600;
+        color: #5C5C5C;
+    }
+    .main__create-options{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
     }
 </style>
