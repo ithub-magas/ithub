@@ -70,25 +70,25 @@
                             <button class="create-option__button">
                                 <img class="create-option__icon" src="../assets/imagesIcon.svg" alt="icon">
                             </button>
-                            <span class="create-option__label"></span>
+                            <span class="create-option__label">Изображение</span>
                         </div>
                         <div class="create-option">
                             <button class="create-option__button">
-                                <img class="create-option__icon" src="../assets/" alt="icon">
+                                <span class="create-option__span">Тт</span>
                             </button>
-                            <span class="create-option__label"></span>
+                            <span class="create-option__label">Текст</span>
                         </div>
                         <div class="create-option">
                             <button class="create-option__button">
                                 <img class="create-option__icon" src="../assets/videoIcon.svg" alt="icon">
                             </button>
-                            <span class="create-option__label"></span>
+                            <span class="create-option__label">Видео и аудио</span>
                         </div>
                         <div class="create-option">
                             <button class="create-option__button">
                                 <img class="create-option__icon" src="../assets/3dIcon.svg" alt="icon">
                             </button>
-                            <span class="create-option__label"></span>
+                            <span class="create-option__label">3D</span>
                         </div>
                     </div>
                 </div>
@@ -190,19 +190,19 @@
 
 <style scoped>
     .page-background{
-        height: 100vh;
+        padding-top: 200px;
         background-color: #0F0B1F;
-        display: flex;
-        align-items: end;
+        position: relative;
     }
     .main{
         width: 100%;
-        height: 80vh;
         background-color: #ffffff;
         border-radius: 50px 50px 0 0;
         display: flex;
         flex-direction: column;
         gap: 100px;
+        padding-inline: 14px;
+        padding-bottom: 60px;
     }
     .main__top-container{
         display: flex;
@@ -217,8 +217,8 @@
         margin-top: -80px;
     }
     .user-profile__avatar{
-        width: 166px;
-        height: 166px;
+        width: 180px;
+        height: 180px;
         border-radius: 50%;
         object-fit: cover;
     }
@@ -252,9 +252,12 @@
 
     .main__actions-bar{
         max-width: 1200px;
+        width: 100%;
+        padding-block: 12px;
         margin-inline: auto;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
+        overflow-x: auto;
         gap: 60px;
     }
     .main__actions-bar__button{
@@ -266,13 +269,12 @@
     }
     .active{
         text-decoration: underline;
-        text-underline-offset: 10px;
+        text-underline-offset: 6px;
     }
     .main__content {
         max-width: 1600px;
         width: 100%;
         margin-inline: auto;
-        padding: 0 20px;
     }
 
     .main__projects {
@@ -352,11 +354,13 @@
 
     .main__create {
         width: 100%;
+        height: 80vh;
         display: grid;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         justify-content: center;
+        align-items: center;
         padding: 20px;
-        border-radius: 10px;
+        border-radius: 20px;
     }
     .main__create-title{
         font-family: Inter;
@@ -367,5 +371,38 @@
     .main__create-options{
         display: grid;
         grid-template-columns: repeat(4, 1fr);
+    }
+    .create-option{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+    }
+    .create-option__span{
+        color: rgb(127, 94, 255);
+        font-size: 26px;
+        font-family:Georgia, 'Times New Roman', Times, serif;
+    }
+    .create-option__label{
+        font-size: 14px;
+        color: #5C5C5C;
+
+    }
+    .create-option__button{
+        width: 60px;
+        height: 60px;
+        border: none;
+        border-radius: 50%;
+        background-color: rgba(127, 94, 255, 0.25);
+        padding: 10px;
+        transition: opacity 0.2s;
+        cursor: pointer;
+    }
+    .create-option__button:hover{
+        opacity: 0.8;
+    }
+    .create-option__icon{
+        width: 40px;
     }
 </style>
