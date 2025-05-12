@@ -26,8 +26,8 @@
                         <img :src="item.poster" alt="" class="project-container__image">
                         <div class="project-container__content">
                             <div class="project-container__user-info">
-                                <img class="project-container__user-avatar" :src="item.user.avatar" alt="avatar">
-                                <span class="project-container__user-name">{{ item.user.name }}</span>
+                                <img class="project-container__user-avatar" :src="student.avatar" alt="avatar">
+                                <span class="project-container__user-name">{{ student.firstName }}</span>
                             </div>
                             <div class="project-container__stats">
                                 <div class="project-container__stats-item">
@@ -110,59 +110,146 @@
                 myProjects: [
                     {
                         poster: "http://localhost:5000/media/images/image3.png",
-                        user: {
-                            avatar: "http://localhost:5000/media/images/image4.png",
-                            name: "Ahmed"
-                        },
-                        likes: 12,
-                        views: 1000
+                        likes: 143,
+                        views: 453
                     },
                     {
                         poster: "http://localhost:5000/media/images/image2.png",
-                        user: {
-                            avatar: "http://localhost:5000/media/images/image3.png",
-                            name: "Ahmed"
-                        },
-                        likes: 12,
-                        views: 1000
+                        likes: 345,
+                        views: 12314
                     },
                     {
                         poster: "http://localhost:5000/media/images/image4.png",
                         user: {
-                            avatar: "http://localhost:5000/media/images/image2.png",
                             name: "Ahmed"
                         },
-                        likes: 12,
-                        views: 1000
+                        likes: 134,
+                        views: 3453
                     },
+                    {
+                        poster: "http://localhost:5000/media/images/image7.png",
+                        likes: 456,
+                        views: 6456
+                    },
+                    {
+                        poster: "http://localhost:5000/media/images/image10.png",
+                        likes: 599,
+                        views: 4885
+                    },
+                    {
+                        poster: "http://localhost:5000/media/images/image3.png",
+                        likes: 343,
+                        views: 1345
+                    }
                 ],
                 projects: [
                     {
                         poster: "http://localhost:5000/media/images/image2.png",
                         user: {
-                            avatar: "http://localhost:5000/media/images/image3.png",
+                            avatar: "http://localhost:5000/media/images/avatar.png",
                             name: "Arsamak"
                         },
-                        likes: 12,
-                        views: 1000
+                        likes: 203,
+                        views: 1231
                     },
                     {
                         poster: "http://localhost:5000/media/images/image3.png",
                         user: {
-                            avatar: "http://localhost:5000/media/images/image4.png",
+                            avatar: "http://localhost:5000/media/images/avatar.png",
                             name: "Musa"
                         },
-                        likes: 12,
-                        views: 1000
+                        likes: 343,
+                        views: 1345
                     },
                     {
                         poster: "http://localhost:5000/media/images/image4.png",
                         user: {
-                            avatar: "http://localhost:5000/media/images/image2.png",
+                            avatar: "http://localhost:5000/media/images/avatar.png",
                             name: "Adam"
                         },
-                        likes: 12,
-                        views: 1000
+                        likes: 324,
+                        views: 2445
+                    },
+                    {
+                        poster: "http://localhost:5000/media/images/image4.png",
+                        user: {
+                            avatar: "http://localhost:5000/media/images/avatar.png",
+                            name: "Muhammad"
+                        },
+                        likes: 657,
+                        views: 2354
+                    },
+                    {
+                        poster: "http://localhost:5000/media/images/image5.png",
+                        user: {
+                            avatar: "http://localhost:5000/media/images/avatar.png",
+                            name: "Said"
+                        },
+                        likes: 405,
+                        views: 3924
+                    },
+                    {
+                        poster: "http://localhost:5000/media/images/image6.png",
+                        user: {
+                            avatar: "http://localhost:5000/media/images/avatar.png",
+                            name: "Maga"
+                        },
+                        likes: 345,
+                        views: 5456
+                    },
+                    {
+                        poster: "http://localhost:5000/media/images/image7.png",
+                        user: {
+                            avatar: "http://localhost:5000/media/images/avatar.png",
+                            name: "Ahmed"
+                        },
+                        likes: 456,
+                        views: 7765
+                    },
+                    {
+                        poster: "http://localhost:5000/media/images/image8.png",
+                        user: {
+                            avatar: "http://localhost:5000/media/images/avatar.png",
+                            name: "Jabrail"
+                        },
+                        likes: 545,
+                        views: 5665
+                    },
+                    {
+                        poster: "http://localhost:5000/media/images/image9.png",
+                        user: {
+                            avatar: "http://localhost:5000/media/images/avatar.png",
+                            name: "Ibragim"
+                        },
+                        likes: 412,
+                        views: 3645
+                    },
+                    {
+                        poster: "http://localhost:5000/media/images/image10.png",
+                        user: {
+                            avatar: "http://localhost:5000/media/images/avatar.png",
+                            name: "Ahmed"
+                        },
+                        likes: 599,
+                        views: 4885
+                    },
+                    {
+                        poster: "http://localhost:5000/media/images/image11.png",
+                        user: {
+                            avatar: "http://localhost:5000/media/images/avatar.png",
+                            name: "Arsamak"
+                        },
+                        likes: 509,
+                        views: 6958
+                    },
+                    {
+                        poster: "http://localhost:5000/media/images/image12.png",
+                        user: {
+                            avatar: "http://localhost:5000/media/images/avatar.png",
+                            name: "Said"
+                        },
+                        likes: 689,
+                        views: 6924
                     },
                 ]
             }
@@ -180,10 +267,8 @@
                 event.target.classList.add('active');
             }
         },
-        mounted(){
+        created(){
             this.student = JSON.parse(localStorage.getItem("student"));
-            console.log(this.student);
-            
         },
     }
 </script>
@@ -272,7 +357,7 @@
         text-underline-offset: 6px;
     }
     .main__content {
-        max-width: 1600px;
+        max-width: 1349px;
         width: 100%;
         margin-inline: auto;
     }
@@ -354,7 +439,7 @@
 
     .main__create {
         width: 100%;
-        height: 80vh;
+        height: 56vh;
         display: grid;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
         justify-content: center;
