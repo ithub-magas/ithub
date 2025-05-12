@@ -1,18 +1,24 @@
 import { createWebHistory, createRouter } from "vue-router";
-import authorization from "./pages/authorization.vue";
-import main from "./pages/main.vue";
-import developers from "./pages/developers.vue";
+import Authorization from "./pages/authorization.vue";
+import Main from "./pages/main.vue";
+import Developers from "./pages/developers.vue";
 import Profile from "./pages/Profile.vue";
 import Resume from "./pages/Resume.vue";
+
+// Объединенные импорты
 import Projects from "./pages/Projects.vue";
+import Portfolio from "./pages/Portfolio.vue";
 
 const routes = [
-  { path: "/", component: main },
-  { path: "/authorization", component: authorization },
-  { path: "/dev", component: developers },
+  { path: "/", component: Main },
+  { path: "/authorization", component: Authorization },
+  { path: "/dev", component: Developers },
   { path: "/profile", component: Profile },
   { path: "/resume", component: Resume },
-  { path: "/projects", component: Projects }
+
+  // Объединенные маршруты
+  { path: "/projects", component: Projects },
+  { path: "/portfolio", component: Portfolio }
 ];
 
 const router = createRouter({
