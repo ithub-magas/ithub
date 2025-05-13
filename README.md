@@ -1,4 +1,5 @@
-https://ithub-mu.vercel.app/
+ССлыка https://ithub-git-adamaushev-aks-projects-9b0bfe44.vercel.app/
+
 
 
 # **Проект: Научная социальная сеть `MagasITHUB`**  
