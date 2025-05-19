@@ -15,7 +15,7 @@ const routes = [
   { path: "/dev", component: Developers },
   { path: "/profile", component: Profile },
   { path: "/resume", component: Resume },
-  { path: "/forum",  component: Forum },
+
   // Объединенные маршруты
   { path: "/projects", component: Projects },
   { path: "/portfolio", component: Portfolio }
