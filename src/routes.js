@@ -4,7 +4,7 @@ import Main from "./pages/main.vue";
 import Developers from "./pages/developers.vue";
 import Profile from "./pages/Profile.vue";
 import Resume from "./pages/Resume.vue";
-import Forum from "./pages/Forum.vue";
+
 // Объединенные импорты
 import Projects from "./pages/Projects.vue";
 import Portfolio from "./pages/Portfolio.vue";
