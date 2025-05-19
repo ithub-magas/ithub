@@ -1,234 +1,504 @@
 <template>
-  <div class="resume-wrapper" ref="resumeContent">
-    <div class="left-column">
-      <img :src="student.avatar" alt="Фото" class="avatar-img" />
-
-      <div class="sidebar-section">
-        <h3>Желаемая зарплата</h3>
-        <p>200 000 рублей</p>
+  <div class="forum">
+    <div class="main">
+      <div class="search">
+        <button class="search-btn">
+          <img src="../assets/Forum/Searsh.svg" width="25px" alt="" />
+        </button>
+        <div class="search-set">
+          <div class="search-bar">
+            <input type="text" placeholder="Поиск" />
+          </div>
+          <nav class="nav-links">
+            <a id="acruve" href="#">Проекты</a>
+            <a href="#">Люди</a>
+            <a href="#">Изображение</a>
+          </nav>
+        </div>
+        <button class="search-filter">
+          Фильтр <img src="../assets/Forum/Vector.svg" alt="" width="10px" />
+        </button>
       </div>
-
-      <div class="sidebar-section">
-        <h3>Занятость</h3>
-        <p>Полная, полный рабочий день</p>
+      <div class="navig">
+        <h1>Все потоки</h1>
+        <div class="navig-nav">
+          <ul>
+            <a href="">Статьи</a>
+            <p>+67</p>
+          </ul>
+          <ul>
+            <a href="">Посты</a>
+            <p>+13</p>
+          </ul>
+          <ul>
+            <a href="">Новости</a>
+            <p>+30</p>
+          </ul>
+          <ul>
+            <a href="">Хабы</a>
+            <p></p>
+          </ul>
+          <ul>
+            <a href="">Авторы</a>
+            <p></p>
+          </ul>
+          <ul>
+            <a href="">Компании</a>
+            <p></p>
+          </ul>
+        </div>
+        <hr class="divider" />
+        <button>
+          Всё подряд
+          <img src="../assets/Forum/Vector.svg" alt="" width="10px" />
+        </button>
       </div>
-
-      <div class="sidebar-section">
-        <h3>Иностранные языки</h3>
-        <ul>
-          <li>Русский — родной</li>
-          <li>Английский — B1</li>
-        </ul>
-      </div>
-
-      <div class="sidebar-section">
-        <h3>Компьютерные навыки</h3>
-        <ul>
-          <li>JavaScript</li>
-          <li>HTML / CSS</li>
-          <li>Vue / React</li>
-          <li>REST API</li>
-        </ul>
+      <div class="forum__container">
+        <div class="forum__container_filter">
+          <h3>Опыт работы в отрасли</h3>
+          <button class="filter-button">Все отрасли</button>
+          <select class="filter-select">
+            <option value="all_time">За всё время работы</option>
+          </select>
+          <h3>Переезд</h3>
+          <div v-for="option in filterData.relocation" :key="option.value">
+            <input
+              type="radio"
+              :value="option.value"
+              name="relocation"
+              class="filter-radio"
+            />
+            <label>{{ option.label }}</label>
+          </div>
+          <h3>Тип занятости</h3>
+          <div v-for="option in filterData.employmentType" :key="option.value">
+            <input
+              type="radio"
+              :value="option.value"
+              name="employmentType"
+              class="filter-radio"
+            />
+            <label
+              >{{ option.label }}
+              <span class="count">{{ option.count }}</span></label
+            >
+          </div>
+          <h3>Статус</h3>
+          <div v-for="option in filterData.status" :key="option.value">
+            <input
+              type="radio"
+              :value="option.value"
+              name="status"
+              class="filter-radio"
+            />
+            <label
+              >{{ option.label }}
+              <span class="count">{{ option.count }}</span></label
+            >
+          </div>
+        </div>
+        <div class="forum__container_card">
+          <div v-for="card in cardData" :key="card.id" class="card">
+            <div class="border-card"></div>
+            <div class="card-header">
+              <img :src="card.avatar" alt="Аватар" class="avatar" />
+              <div class="card-info">
+                <h3>{{ card.name }}</h3>
+                <div class="meta">
+                  <span>{{ card.age }} лет</span>
+                  <span>•</span>
+                  <span>{{ card.lastSeen }}</span>
+                  <span>•</span>
+                  <span>{{ card.updated }}</span>
+                </div>
+                <button class="status-btn">{{ card.status }}</button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="info">
+                <span>Опыт работы</span>
+                <span>{{ card.experience }}</span>
+              </div>
+              <hr class="divider" />
+              <div class="info">
+                <span>Последнее место работы</span>
+                <span>{{ card.lastJob }}</span>
+              </div>
+              <div class="info">
+                <a href="" class="one_info"
+                  >Подробнее о последнем месте
+                  <img src="../assets/Forum/Vector.svg" alt="" width="10px"
+                /></a>
+              </div>
+          
+            </div>
+            
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="right-column">
-      <div class="header">
-        <h1>{{ student.lastName }} {{ student.firstName }} {{ student.middleName }}</h1>
-        <p><strong>Email:</strong> {{ student.email }}</p>
-        <p><strong>Телефон:</strong> {{ student.phoneNumber || '+7 (999) 123-45-67' }}</p>
-        <p><strong>Город:</strong> Грозный</p>
-      </div>
-
-      <div class="section">
-        <h2>Личная информация</h2>
-        <p><strong>Пол:</strong> Мужской</p>
-        <p><strong>Дата рождения:</strong> 25 декабря 2004</p>
-        <p><strong>Возраст:</strong> 20 лет</p>
-        <p><strong>Гражданство:</strong> Россия</p>
-        <p><strong>Семейное положение:</strong> Не женат</p>
-        <p><strong>Позиция:</strong> Frontend-разработчик</p>
-      </div>
-
-      <div class="section">
-        <h2>Образование</h2>
-        <ul>
-          <li><strong>2024</strong> — Hexlet — Frontend-разработчик</li>
-          <li><strong>2024</strong> — Соц.-пед. колледж — Правоохранительная деятельность</li>
-        </ul>
-      </div>
-
-      <div class="section">
-        <h2>Курсы и тренинги</h2>
-        <ul>
-          <li>Frontend разработка — Hexlet</li>
-          <li>JavaScript базовый — Stepik</li>
-        </ul>
-      </div>
-
-      <div class="section">
-        <h2>Дополнительная информация</h2>
-        <p><strong>Личные качества:</strong></p>
-        <ul>
-          <li>Ответственность</li>
-          <li>Коммуникабельность</li>
-          <li>Желание учиться</li>
-          <li>Внимательность</li>
-        </ul>
-        <p><strong>О себе:</strong> Я начинающий frontend-разработчик, увлечён созданием современных и удобных интерфейсов. Имею опыт работы с Vue, React и взаимодействием с REST API. Постоянно учусь новому, участвую в онлайн-курсах и стремлюсь расти как специалист.</p>
-        <p><strong>Хобби:</strong> Фронтенд, дизайн, настольные игры, спорт</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="resume-buttons no-print">
-    <button @click="downloadPDF">Скачать PDF</button>
   </div>
 </template>
-
 <script>
-import html2pdf from 'html2pdf.js';
-
 export default {
   name: "Resume",
   data() {
     return {
-      student: {}
+      filterData: {
+        experience: [
+          { label: "Все отрасли", value: "all" },
+          { label: "За всё время работы", value: "all_time" },
+        ],
+        relocation: [
+          { label: "Живут в регионе", value: "in_region" },
+          {
+            label: "Не живут, но готовы переезжать в регион",
+            value: "willing_to_move",
+          },
+          { label: "Готовы уехать из региона", value: "willing_to_leave" },
+        ],
+        employmentType: [
+          { label: "Полная занятость", value: "full_time", count: 30466 },
+          { label: "Частичная занятость", value: "part_time", count: 10092 },
+          { label: "Проектная работа", value: "project_work", count: 1685 },
+          { label: "Стажировка", value: "internship", count: 1685 },
+          { label: "Волонтерство", value: "volunteering", count: 1431 },
+        ],
+        status: [
+          { label: "Без статуса поиска", value: "no_status", count: 30466 },
+          { label: "Не ищет работу", value: "not_looking", count: 10092 },
+          { label: "Ищет предложения", value: "looking", count: 1685 },
+          {
+            label: "Активно ищет работу",
+            value: "actively_looking",
+            count: 1431,
+          },
+        ],
+      },
+      cardData: [
+        {
+          id: 1,
+          avatar:
+            "https://avatars.mds.yandex.net/i?id=200f475961f56764a0428cb1b8bb8e38ab3521f9-4571987-images-thumbs&n=13  ",
+          name: "Дизайнер",
+          age: 18,
+          lastSeen: "Был вчера",
+          updated: "Обновлено 12 мая",
+          status: "ищет работу",
+          experience: "1 месяц",
+          lastJob: "KFC",
+          moreResumes: "Ещё 3 резюме",
+        },
+        {
+          id: 2,
+          avatar:
+            "https://avatars.mds.yandex.net/i?id=200f475961f56764a0428cb1b8bb8e38ab3521f9-4571987-images-thumbs&n=13 ",
+          name: "Дизайнер",
+          age: 18,
+          lastSeen: "Был вчера",
+          updated: "Обновлено 12 мая",
+          status: "ищет работу",
+          experience: "1 месяц",
+          lastJob: "KFC",
+          moreResumes: "Ещё 3 резюме",
+        },
+        {
+          id: 3,
+          avatar:
+            "https://avatars.mds.yandex.net/i?id=200f475961f56764a0428cb1b8bb8e38ab3521f9-4571987-images-thumbs&n=13 ",
+          name: "Дизайнер",
+          age: 18,
+          lastSeen: "Был вчера",
+          updated: "Обновлено 12 мая",
+          status: "ищет работу",
+          experience: "1 месяц",
+          lastJob: "KFC",
+          moreResumes: "Ещё 3 резюме",
+        },
+      ],
     };
   },
-  mounted() {
-    const saved = localStorage.getItem("student");
-    this.student = saved ? JSON.parse(saved) : {};
-    if (!this.student.firstName) {
-      this.$router.push("/authorization");
-    }
-  },
-  methods: {
-    downloadPDF() {
-      const element = this.$refs.resumeContent;
-      const opt = {
-        margin:       0.25,
-        filename:     'resume.pdf',
-        image:        { type: 'jpeg', quality: 0.95 },
-        html2canvas:  { scale: 2, useCORS: true },
-        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
-      };
-
-      html2pdf().set(opt).from(element).save();
-    }
-  }
 };
 </script>
-
 <style scoped>
-.resume-wrapper {
-  display: flex;
-  flex-direction: row;
-  font-family: 'Segoe UI', sans-serif;
-  max-width: 1100px;
-  margin: 60px auto;
-  background-color: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.1);
-  border-radius: 12px;
-  overflow: hidden;
-  font-size: 18px;
-}
-.left-column {
-  width: 35%;
-  background-color: #6a1b9a;
-  color: white;
-  padding: 25px;
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
-.avatar-img {
+.forum {
   width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 10px;
-  border: 3px solid white;
+  height: 1600px;
+  background-color: #0f0b1f;
 }
-.sidebar-section {
+.divider {
+  border: none;
+  height: 1px;
+  background-color: #8f8f8faa;
+  margin: 2px 0;
+}
+.main {
+  width: 87%;
+  padding-top: 50px;
+  height: 1000px;
+  background-color: #0f0b1f;
+  margin-left: auto;
+  margin-right: auto;
+}
+.search {
+  display: flex;
+  height: 58px;
+  width: 100%;
+}
+.search-btn {
+  background-color: #7f5eff;
+  width: 70px;
+  height: 58px;
+  z-index: 0;
+  border-radius: 12px 0 0 12px;
+  align-items: center;
+  justify-content: center;
+}
+.search-set {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #282828;
+  width: 50%;
+  border-radius: 12px;
+  margin-left: -7px;
+  border: 1px solid #7f5eff;
+}
+.search-bar {
+  width: 100%;
+}
+.search-bar input {
+  width: 90%;
+  padding: 10px;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
   font-size: 16px;
 }
-.sidebar-section h3 {
-  margin-bottom: 10px;
-  font-size: 18px;
-  border-bottom: 1px solid white;
-}
-.right-column {
-  width: 65%;
-  padding: 30px;
-  font-size: 17px;
-}
-.header h1 {
-  font-size: 28px;
-  margin-bottom: 12px;
-}
-.section {
-  margin-top: 26px;
-}
-.section h2 {
-  font-size: 20px;
-  margin-bottom: 10px;
-  color: #6a1b9a;
-  border-bottom: 1px solid #ccc;
-}
-.resume-buttons {
+.nav-links {
   display: flex;
-  justify-content: center;
-  margin: 30px auto 50px;
+  gap: 40px;
 }
-button {
-  background-color: #6a1b9a;
-  color: white;
-  padding: 10px 20px;
-  font-size: 18px;
-  border: none;
+.nav-links a {
+  text-decoration: none;
+  color: #ffffff99;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+#acruve {
+  color: #ffffff;
+}
+.nav-links a:hover {
+  color: #6c5dd3;
+}
+.search-filter {
+  background-color: #1e1932;
+  width: 143px;
+  height: 58px;
   border-radius: 10px;
+  color: #ffffff;
+  font-size: 18px;
+  margin-left: 3%;
+}
+.navig {
+  width: 100%;
+  background-color: #272433;
+  height: 205px;
+  margin-top: 54px;
+  border-radius: 10px;
+  color: #ffffff;
+}
+.navig h1 {
+  padding-top: 30px;
+  margin-left: 100px;
+}
+.navig-nav {
+  display: flex;
+  margin-top: 30px;
+  margin-left: 100px;
+}
+.navig button {
+  width: 90px;
+  margin-left: 100px;
+  height: 16px;
+  background-color: rgba(0, 0, 0, 0);
+  color: #ffffff;
+  margin-top: 30px;
   cursor: pointer;
 }
-button:hover {
-  background-color: #4a148c;
+.navig-nav ul {
+  display: flex;
+  margin-right: 30px;
+}
+.navig-nav a {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 14px;
+}
+.navig-nav p {
+  color: #7f5eff;
+  font-size: 14px;
+  margin-top: 3px;
+}
+.forum__container {
+  display: flex;
+  width: 100%;
+  margin-top: 50px;
+  justify-content: space-between;
+  gap: 20px;
+}
+.forum__container_filter {
+  width: 15%;
+  background-color: #272433;
+  border-radius: 10px;
+  padding: 20px;
+  color: #ffffff;
+}
+.forum__container_card {
+  width: 84%;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+  flex-direction: column;
+  background-color: #272433;
+}
+.card {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  padding: 20px;
+  color: #ffffff;
+}
+.border-card{
+      border: 1px solid #7F5EFF;
+      border-radius: 30px;
+      position: absolute;
+      width: 70%;
+      margin-left: -10px;
+      height: 295px;
+      margin-top: -20px;
 }
 
-/* Адаптация под мобильные */
-@media (max-width: 768px) {
-  .resume-wrapper {
-    flex-direction: column;
-    font-size: 16px;
-  }
-  .left-column,
-  .right-column {
-    width: 100%;
-    padding: 20px;
-  }
-  .avatar-img {
-    height: 200px;
-  }
+.card-header {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+      margin-left: 20px;
 }
+.avatar {
+  width: 150px;
+  border-radius: 20%;
+}
+.card-info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 71px;
+  height: 130px;
+  justify-content: space-evenly;
+      
+}
+.meta {
+  font-size: 12px;
+  width: 220px;
+  color: #768694;
+  display: flex;
+  justify-content: space-between;
+}
+.status-btn {
+  background-color: #fff3e6;
+  color: #000000;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  width: 130px;
+  height: 28px;
+}
+.card-body {
+  margin-top: 20px;
+  width: 93%;
+  margin-left: 20px;
+}
+.info {
+  display: flex;
+  margin-bottom: 10px;
+      margin-top: 10px; 
+}
+.info span {
+  width: 240px;
+}
+.one_info {
+  margin-left: 240px;
+  color: #7F5EFF;
+}
+.forum__container_filter {
+  padding: 20px;
+}
+h3 {
 
-/* Для печати и PDF */
-@media print {
-  body {
-    background-color: white;
-  }
-  .resume-wrapper {
-    box-shadow: none;
-    border-radius: 0;
-    font-size: 14px;
-  }
-  .left-column,
-  .right-column {
-    padding: 15px;
-  }
-  .no-print {
-    display: none !important;
-  }
-  .left-column{
-    background-color:white;
-    color: black;
-  }
+  color: #ffffff;
+  margin-top: 10px;
+}
+.filter-button {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #00000000;
+  color: #fff;
+  border: none;
+  border: 1px solid #7f5eff;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+.filter-select {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #00000000;
+  color: #fff;
+  border: none;
+  border: 1px solid #7f5eff;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.forum__container_filter div {
+  margin-top: 20px;
+}
+.filter-radio {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  margin-right: 10px;
+}
+.filter-radio:checked {
+  background-color: #7f5eff;
+  border-color: #7f5eff;
+}
+.filter-radio:checked::after {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 8px;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.count {
+  color: #7f5eff;
+  font-size: 12px;
+  margin-left: 5px;
 }
 </style>
