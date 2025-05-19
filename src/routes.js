@@ -8,9 +8,10 @@ import Resume from "./pages/Resume.vue";
 // Объединенные импорты
 import Projects from "./pages/Projects.vue";
 import Portfolio from "./pages/Portfolio.vue";
+import Home from "./pages/Home.vue";
 
 const routes = [
-  { path: "/", component: Main },
+  { path: "/", component: Home },
   { path: "/authorization", component: Authorization },
   { path: "/dev", component: Developers },
   { path: "/profile", component: Profile },

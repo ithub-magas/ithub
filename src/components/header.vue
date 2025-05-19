@@ -106,7 +106,7 @@ header {
   justify-content: center;
   padding-top: 30px;
   padding-bottom: 20px;
-  background-color: #0F0B1F;
+  background-color: transparent;
   position: relative;
 }
 
