@@ -10,11 +10,9 @@
          <RouterLink to="/profile" class="nav-link active">
             профиль
         </RouterLink>
-        <RouterLink to="/portfolio" class="nav-link active">
-            Портфолио
-        </RouterLink>
-        <RouterLink to="/dev" class="nav-link active">
-            Разработчики
+    
+         <RouterLink to="/forum" class="nav-link active">
+            Форум
         </RouterLink>
        
     </div>
