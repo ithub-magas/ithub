@@ -1,157 +1,547 @@
 <template>
-  <div class="main-container">
-
-    <div class="content_up_search_posts">
-
-      <div class="super_search_input_container">
-        <div class="input_part_one_search_post">
-          <div class="search_img_input_button">
-            <img src="../assets/PostCard/search.png" alt="">
-          </div>
-        </div>
-        <input placeholder="Поиск" class="input_main_part_search_post" type="text">
-        <div class="input_part_two_search_post">
-          <button class="search_filter_button">Проекты</button>
-          <button class="search_filter_button">Люди</button>
-          <button class="search_filter_button">Изображение</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="main-content">
-      <div class="forum_box">
-        <div class="filters_settings_forum_container">
-          <div class="title_filters">
-            <h1>Все потоки</h1>
-          </div>
-
-          <div class="panel_buttons_filters">
-            <div class="main_panel_box">
-              <span class="button_link_click_filter">Статьи</span>
-              <span class="button_link_click_filter">Посты</span>
-              <span class="button_link_click_filter">Новости</span>
-              <span class="button_link_click_filter">Хабы</span>
-              <span class="button_link_click_filter">Авторы</span>
-              <span class="button_link_click_filter">Компании</span>
-            </div>
-          </div>
-          <div class="show_more_button_filters">
-            <div class="dropdown" ref="dropdown">
-              <button class="dropbtn" @click.stop="toggleDropdown">
-                Все подряд
-                <svg class="dropdown-arrow" :class="{ 'rotated': isDropdownOpen }" width="12" height="8"
-                  viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M1 1.5L6 6.5L11 1.5" stroke="white" stroke-width="1.5" stroke-linecap="round" />
-                </svg>
-              </button>
-              <div class="dropdown-content" v-if="isDropdownOpen">
-                <a href="">Новые</a>
-                <a href="">Популярные</a>
-                <a href="">Лучшие за неделю</a>
-                <a href="">Лучшие за месяц</a>
+  <div class="forum-page">
+    <div class="forum-page__container">
+      <div class="forum-page__main-content">
+        <div class="forum-page__left-column">
+          <div class="forum-search">
+            <div class="forum-search__container">
+              <div class="forum-search__input-group">
+                <div class="forum-search__icon-wrapper">
+                  <img src="../assets/PostCard/search.png" alt="Search icon" />
+                </div>
+                <input
+                  placeholder="Поиск"
+                  class="forum-search__input"
+                  type="text"
+                />
+                <div class="forum-search__filter-buttons">
+                  <button class="forum-search__filter-button">Проекты</button>
+                  <button class="forum-search__filter-button">Люди</button>
+                  <button class="forum-search__filter-button">
+                    Изображение
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
+          <div class="forum-filters">
+            <div class="forum-filters__header">
+              <h1 class="forum-filters__title">Все потоки</h1>
+            </div>
 
-        <div class="list_forum_posts">
-          <div class="post_card_container">
-            <div class="post_card_content">
-              <div class="author_published">
-                <div class="avatar_box">
-                  <div class="avatar_user_post_box">
+            <div class="forum-filters__tabs">
+              <div class="forum-filters__tabs-container">
+                <span class="forum-filters__tab">Статьи</span>
+                <span class="forum-filters__tab">Посты</span>
+                <span class="forum-filters__tab">Новости</span>
+                <span class="forum-filters__tab">Хабы</span>
+                <span class="forum-filters__tab">Авторы</span>
+                <span class="forum-filters__tab">Компании</span>
+              </div>
+            </div>
+            <div class="forum-filters__sort">
+              <div class="forum-filters__dropdown" ref="dropdown">
+                <button
+                  class="forum-filters__dropdown-button"
+                  @click.stop="toggleDropdown"
+                >
+                  Все подряд
+                  <svg
+                    class="forum-filters__dropdown-arrow"
+                    :class="{
+                      'forum-filters__dropdown-arrow--rotated': isDropdownOpen,
+                    }"
+                    width="12"
+                    height="8"
+                    viewBox="0 0 12 8"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1 1.5L6 6.5L11 1.5"
+                      stroke="white"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </button>
+                <div class="forum-filters__dropdown-menu" v-if="isDropdownOpen">
+                  <a href="">Новые</a>
+                  <a href="">Популярные</a>
+                  <a href="">Лучшие за неделю</a>
+                  <a href="">Лучшие за месяц</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="forum-posts">
+            <div class="forum-post">
+              <div class="forum-post__content">
+                <div class="forum-post__author">
+                  <div class="forum-post__avatar">
+                    <div class="forum-post__avatar-image">
+                      <img
+                        src="https://image.winudf.com/v2/image/Y29tLndQcmVtaXVtSEROYXR1cmVXYWxscGFwZXJzX3NjcmVlbnNob3RzXzNfMjcxMmJjNTE/screen-3.jpg?fakeurl=1&type=.jpg"
+                        class="forum-post__avatar-img"
+                        alt="Author avatar"
+                      />
+                    </div>
+                  </div>
+                  <div class="forum-post__author-name">Jonny Dep</div>
+                  <div class="forum-post__publish-time">11 минут назад</div>
+                </div>
+                <div class="forum-post__description">
+                  JForge: Создаем свою мини-IDE на Java Swing с нуля (с темной
+                  темой и подсветкой синтаксиса!)
+                </div>
+                <div class="forum-post__meta">
+                  <div class="forum-post__reading-time">
+                    <span class="forum-post__meta-item">
+                      <img
+                        src="../assets/PostCard/clock.png"
+                        alt="Clock icon"
+                      />
+                      4 мин
+                    </span>
+                  </div>
+                  <div class="forum-post__views">
+                    <span class="forum-post__meta-item">
+                      <img src="../assets/PostCard/eye.png" alt="Views icon" />
+                      68
+                    </span>
+                  </div>
+                </div>
+                <div class="forum-post__tags">
+                  <span class="forum-post__tag">Графический дизайн</span>
+                  <span class="forum-post__tag">Программирование</span>
+                </div>
+                <div class="forum-post__image">
+                  <div class="forum-post__image-wrapper">
                     <img
-                      src="https://image.winudf.com/v2/image/Y29tLndQcmVtaXVtSEROYXR1cmVXYWxscGFwZXJzX3NjcmVlbnNob3RzXzNfMjcxMmJjNTE/screen-3.jpg?fakeurl=1&type=.jpg"
-                      class="avatar_user_post_image" alt="">
+                      src="../assets/PostCard/PostImage.png"
+                      alt="Post image"
+                    />
                   </div>
                 </div>
-                <div class="username_author_post">Jonny Dep</div>
-                <div class="time_published_post">11 минут назад</div>
-              </div>
-              <div class="decription_post_content">JForge: Создаем свою мини-IDE на Java Swing с нуля (с темной темой и
-                подсветкой синтаксиса!)</div>
-              <div class="post_little_info_box">
-                <div class="counter_time">
-                  <span class="time_counter_post">
-                    <img src="../assets/PostCard/clock.png" alt="">
-                    4 мин
-                  </span>
-                </div>
-                <div class="counter_views">
-                  <span class="views_counter_post">
-                    <img src="../assets/PostCard/eye.png" alt="">
-                    68
-                  </span>
-                </div>
-              </div>
-              <div class="keywords_post_container">
-                <span class="keyword_post">Графический дизайн</span>
-                <span class="keyword_post">Программирование</span>
-              </div>
-              <div class="image_post_container">
-                <div class="image_post_content">
-                  <img src="../assets/PostCard/PostImage.png" alt="">
-                </div>
-              </div>
-              <div class="post_set_status_panel">
-                <div class="post_actions">
-                  <div class="action_item">
-                    <img class="like" src="../assets/PostCard/like.png" alt="Лайк">
-                    <span class="counter_action_item">24</span>
+                <div class="forum-post__actions">
+                  <div class="forum-post__action-buttons">
+                    <div class="forum-post__action">
+                      <img
+                        class="forum-post__action-icon"
+                        src="../assets/PostCard/like.png"
+                        alt="Лайк"
+                      />
+                      <span class="forum-post__action-count">24</span>
+                    </div>
+                    <div class="forum-post__action">
+                      <img
+                        class="forum-post__action-icon"
+                        src="../assets/PostCard/save.png"
+                        alt="Сохранение"
+                      />
+                      <span class="forum-post__action-count">12</span>
+                    </div>
+                    <div class="forum-post__action">
+                      <img
+                        class="forum-post__action-icon"
+                        src="../assets/PostCard/report.png"
+                        alt="Поделиться"
+                      />
+                      <span class="forum-post__action-count">3</span>
+                    </div>
+                    <div class="forum-post__action">
+                      <img
+                        class="forum-post__action-icon"
+                        src="../assets/PostCard/comments.png"
+                        alt="Комментарии"
+                      />
+                      <span class="forum-post__action-count">8</span>
+                    </div>
                   </div>
-                  <div class="action_item">
-                    <img class="save" src="../assets/PostCard/save.png" alt="Сохранение">
-                    <span class="counter_action_item">12</span>
-                  </div>
-                  <div class="action_item">
-                    <img class="report" src="../assets/PostCard/report.png" alt="Поделиться">
-                    <span class="counter_action_item">3</span>
-                  </div>
-                  <div class="action_item">
-                    <img class="comments" src="../assets/PostCard/comments.png" alt="Комментарии">
-                    <span class="counter_action_item">8</span>
-                  </div>
-
-
                 </div>
               </div>
             </div>
           </div>
+        </div>
+        <div class="content__right_forum_list_main__box">
+          <div
+            class="filters_list_button"
+            @click="toggleFilterDropdown"
+            ref="filterButton"
+          >
+            <span class="filters_list_button_text">Фильтр</span>
+            <svg
+              class="filters_list_button_arrow"
+              :class="{
+                'filters_list_button_arrow--rotated': isFilterDropdownOpen,
+              }"
+              width="12"
+              height="8"
+              viewBox="0 0 12 8"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1 1.5L6 6.5L11 1.5"
+                stroke="white"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
 
+            <div class="filters_dropdown" v-if="isFilterDropdownOpen">
+              <div class="filters_dropdown_item" @click="selectFilter('all')">
+                Все
+              </div>
+              <div
+                class="filters_dropdown_item"
+                @click="selectFilter('popular')"
+              >
+                Популярные
+              </div>
+              <div class="filters_dropdown_item" @click="selectFilter('new')">
+                Новые
+              </div>
+              <div
+                class="filters_dropdown_item"
+                @click="selectFilter('commented')"
+              >
+                С комментариями
+              </div>
+              <div class="filters_dropdown_item" @click="selectFilter('saved')">
+                Сохраненные
+              </div>
+            </div>
+          </div>
+          <div class="forum-page__right-column">
+            <div class="popular-posts">
+              <div class="popular-posts__content">
+                <div class="popular-posts__header">
+                  <h1>Популярное</h1>
+                </div>
+                <div class="popular-posts__list">
+                  <div class="popular-posts__item">
+                    <div class="popular-posts__text">
+                      <span>
+                        ООП не мертво. Вы просто пользуетесь им как молотком по
+                        клавиатуре
+                      </span>
+                    </div>
+                    <div class="popular-posts__stats">
+                      <div class="popular-posts__stats-container">
+                        <div class="popular-posts__stat">
+                          <img
+                            class="popular-posts__stat-icon"
+                            src="../assets/PostCard/counter-views.png"
+                            alt="Просмотры"
+                          />
+                          <span class="popular-posts__stat-count">1.2K</span>
+                        </div>
+                        <div class="popular-posts__stat">
+                          <img
+                            class="popular-posts__stat-icon"
+                            src="../assets/PostCard/comments.png"
+                            alt="Комментарии"
+                          />
+                          <span class="popular-posts__stat-count">48</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="popular-posts__item">
+                    <div class="popular-posts__text">
+                      <span>
+                        От песка в глазах к панораме: как 49- дюймовый монитор
+                        заменил два 27- дюймовых и сделал жизнь и работу
+                        комфортнее
+                      </span>
+                    </div>
+                    <div class="popular-posts__stats">
+                      <div class="popular-posts__stats-container">
+                        <div class="popular-posts__stat">
+                          <img
+                            class="popular-posts__stat-icon"
+                            src="../assets/PostCard/counter-views.png"
+                            alt="Просмотры"
+                          />
+                          <span class="popular-posts__stat-count">1.2K</span>
+                        </div>
+                        <div class="popular-posts__stat">
+                          <img
+                            class="popular-posts__stat-icon"
+                            src="../assets/PostCard/comments.png"
+                            alt="Комментарии"
+                          />
+                          <span class="popular-posts__stat-count">48</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="popular-posts__item">
+                    <div class="popular-posts__text">
+                      <span>
+                        Fast Company: первым «убийственным приложением» для
+                        генеративного ИИ станет программирование
+                      </span>
+                    </div>
+                    <div class="popular-posts__stats">
+                      <div class="popular-posts__stats-container">
+                        <div class="popular-posts__stat">
+                          <img
+                            class="popular-posts__stat-icon"
+                            src="../assets/PostCard/counter-views.png"
+                            alt="Просмотры"
+                          />
+                          <span class="popular-posts__stat-count">1.2K</span>
+                        </div>
+                        <div class="popular-posts__stat">
+                          <img
+                            class="popular-posts__stat-icon"
+                            src="../assets/PostCard/comments.png"
+                            alt="Комментарии"
+                          />
+                          <span class="popular-posts__stat-count">48</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="popular-posts__item">
+                    <div class="popular-posts__text">
+                      <span> Больше нет входа в IT. Только выход </span>
+                    </div>
+                    <div class="popular-posts__stats">
+                      <div class="popular-posts__stats-container">
+                        <div class="popular-posts__stat">
+                          <img
+                            class="popular-posts__stat-icon"
+                            src="../assets/PostCard/counter-views.png"
+                            alt="Просмотры"
+                          />
+                          <span class="popular-posts__stat-count">1.2K</span>
+                        </div>
+                        <div class="popular-posts__stat">
+                          <img
+                            class="popular-posts__stat-icon"
+                            src="../assets/PostCard/comments.png"
+                            alt="Комментарии"
+                          />
+                          <span class="popular-posts__stat-count">48</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="popular-posts__item">
+                    <div class="popular-posts__text">
+                      <span>
+                        Из-за тренда Chromebook Challenge в TikTok ученики
+                        портят школьные ноутбуки, создавая нагрузку грифелем в
+                        разъёме USB
+                      </span>
+                    </div>
+                    <div class="popular-posts__stats">
+                      <div class="popular-posts__stats-container">
+                        <div class="popular-posts__stat">
+                          <img
+                            class="popular-posts__stat-icon"
+                            src="../assets/PostCard/counter-views.png"
+                            alt="Просмотры"
+                          />
+                          <span class="popular-posts__stat-count">1.2K</span>
+                        </div>
+                        <div class="popular-posts__stat">
+                          <img
+                            class="popular-posts__stat-icon"
+                            src="../assets/PostCard/comments.png"
+                            alt="Комментарии"
+                          />
+                          <span class="popular-posts__stat-count">48</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
-      <div class="forum_last_posts"></div>
     </div>
   </div>
 </template>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Big+Shoulders+Stencil:opsz,wght@10..72,100..900&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Unbounded:wght@200..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Big+Shoulders+Stencil:opsz,wght@10..72,100..900&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Unbounded:wght@200..900&display=swap");
 
+.filters_list_button {
+  width: 143px;
+  height: 58px;
+  background: #7f5eff54;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.2s ease;
+}
 
-.main-container {
+.filters_list_button:hover {
+  background: #7f5eff70;
+}
+.filters_list_button_text {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 21px;
+  letter-spacing: 0%;
+  vertical-align: middle;
+  color: #ffffff;
+}
+.filters_list_button_arrow {
+  transition: transform 0.2s ease;
+}
+.filters_list_button_arrow--rotated {
+  transform: rotate(180deg);
+}
+
+.filters_dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #1e1932;
+  border-radius: 0 0 10px 10px;
+  overflow: hidden;
+  z-index: 10;
+  margin-top: 5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  border: 1px solid #544e6c;
+}
+
+.filters_dropdown_item {
+  padding: 12px 20px;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  color: #ffffff;
+  transition: background 0.2s ease;
+}
+
+.filters_dropdown_item:hover {
+  background: #7f5eff30;
+}
+
+.filters_dropdown_item:not(:last-child) {
+  border-bottom: 1px solid #544e6c;
+}
+
+.popular-posts__text span {
+  font-family: "ABeeZee", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 21px;
+  color: #ffffff;
+  letter-spacing: 0%;
+}
+
+.forum-page__main-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 59px;
+}
+
+.forum-search__container {
+  display: grid;
+  gap: 51px;
+}
+
+.popular-posts__stats {
+  margin-top: 12px;
+}
+
+.popular-posts__stats-container {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+.popular-posts__stat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.popular-posts__stat-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.popular-posts__stat-count {
+  font-family: Arial;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 13px;
+  letter-spacing: 0%;
+  color: rgba(255, 255, 255, 1);
+}
+
+.popular-posts__item {
+  border-top: 1px solid #544e6c;
+  border-bottom: 1px solid #544e6c;
+  padding-top: 22px;
+  padding-bottom: 22px;
+}
+
+.popular-posts {
+  padding: 21px;
+  border-radius: 15px;
+  background: #1e1932;
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  margin-left: 0;
+}
+
+.popular-posts__header {
+  font-family: "ABeeZee", sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 68px;
+  letter-spacing: 0.8px;
+  vertical-align: middle;
+  color: #ffffff;
+}
+
+.forum-page {
   background-color: #0f0b1f;
   width: 100%;
   min-height: 100vh;
-  padding-inline: 112px;
+  padding-inline: 5vw;
 }
 
-.main-content {
-  width: 100%;
-  margin-top: 51px;
+.forum-page__container {
+  max-width: 1600px;
+  margin-inline: auto;
   display: flex;
 }
 
-
-.content_up_search_posts {
+.forum-search {
   width: 100%;
-  margin-bottom: 30px;
+  margin-bottom: 26px;
 }
 
-.super_search_input_container {
-  width: 856px;
+.forum-search__input-group {
+  width: 100%;
   height: 58px;
   border-radius: 12px;
   display: flex;
@@ -159,7 +549,7 @@
   overflow: hidden;
 }
 
-.input_part_one_search_post {
+.forum-search__icon-wrapper {
   background-color: rgba(127, 94, 255, 1);
   display: flex;
   justify-content: center;
@@ -169,17 +559,22 @@
   flex-shrink: 0;
 }
 
-.search_img_input_button {
+.forum-page__right-column {
+  padding-top: 20px;
+  width: 100%;
+}
+
+.forum-search__icon-wrapper img {
   width: 25px;
   height: 25px;
 }
 
-.search_img_input_button img {
-  width: 100%;
-  height: 100%;
+.forum-page {
+  display: flex;
+  flex-direction: column;
 }
 
-.input_main_part_search_post {
+.forum-search__input {
   background-color: rgba(15, 11, 31, 1);
   width: 100%;
   height: 56px;
@@ -193,11 +588,11 @@
   line-height: 21px;
 }
 
-.input_main_part_search_post::placeholder {
+.forum-search__input::placeholder {
   color: rgba(255, 255, 255, 0.6);
 }
 
-.input_part_two_search_post {
+.forum-search__filter-buttons {
   display: flex;
   align-items: center;
   border-top-right-radius: 12px;
@@ -207,7 +602,7 @@
   flex-shrink: 0;
 }
 
-.search_filter_button {
+.forum-search__filter-button {
   background: transparent;
   border: none;
   color: white;
@@ -222,31 +617,29 @@
   white-space: nowrap;
 }
 
-.search_filter_button:hover {
+.forum-search__filter-button:hover {
   background: rgba(255, 255, 255, 0.1);
 }
 
-
-
-.forum_box {
+.forum-posts {
   display: grid;
   gap: 43px;
 }
 
-.filters_settings_forum_container {
+.forum-filters {
   width: 100%;
-  min-width: 856px;
   min-height: 205px;
   border-radius: 10px;
   background: rgba(30, 25, 50, 1);
   position: relative;
+  margin-bottom: 43px;
 }
 
-.title_filters {
-  padding: 40px 0px 0px 65px;
+.forum-filters__header {
+  padding: 40px 0px 0px 5%;
 }
 
-.filters_settings_forum_container h1 {
+.forum-filters__title {
   color: rgba(255, 255, 255, 1);
   font-family: "Inter", sans-serif;
   font-weight: 800;
@@ -255,27 +648,28 @@
   letter-spacing: 0%;
 }
 
-.panel_buttons_filters {
+.forum-filters__tabs {
   width: 100%;
   border-bottom: 1px solid rgba(84, 78, 108, 1);
   padding: 20px 0px 3px 0px;
 }
 
-.main_panel_box {
-  padding-left: 65px;
-  padding-right: 116px;
+.forum-filters__tabs-container {
+  padding-left: 5%;
+  padding-right: 5%;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
-.show_more_button_filters {
-  margin-left: 65px;
+.forum-filters__sort {
+  margin-left: 5%;
   min-height: 60px;
   display: flex;
   align-items: center;
 }
 
-.button_link_click_filter {
+.forum-filters__tab {
   font-family: "Inter", sans-serif;
   font-weight: 600;
   font-size: 14px;
@@ -284,19 +678,19 @@
   vertical-align: middle;
   cursor: pointer;
   transition: color 0.2s ease;
+  margin-bottom: 10px;
 }
 
-.button_link_click_filter:hover {
+.forum-filters__tab:hover {
   color: rgba(127, 94, 255, 1);
 }
 
-/* Стили для выпадающего меню */
-.dropdown {
+.forum-filters__dropdown {
   position: relative;
   display: inline-block;
 }
 
-.dropbtn {
+.forum-filters__dropdown-button {
   font-family: "Inter", sans-serif;
   font-weight: 500;
   font-size: 13px;
@@ -314,19 +708,19 @@
   padding: 6px 12px;
 }
 
-.dropbtn:hover {
+.forum-filters__dropdown-button:hover {
   background: rgba(84, 78, 108, 0.3);
 }
 
-.dropdown-arrow {
+.forum-filters__dropdown-arrow {
   transition: transform 0.2s ease;
 }
 
-.dropdown-arrow.rotated {
+.forum-filters__dropdown-arrow--rotated {
   transform: rotate(180deg);
 }
 
-.dropdown-content {
+.forum-filters__dropdown-menu {
   position: absolute;
   background-color: rgba(40, 35, 70, 1);
   min-width: 180px;
@@ -340,7 +734,7 @@
   border: 1px solid rgba(84, 78, 108, 0.5);
 }
 
-.dropdown-content a {
+.forum-filters__dropdown-menu a {
   color: white;
   padding: 10px 16px;
   text-decoration: none;
@@ -350,20 +744,19 @@
   transition: background 0.2s ease;
 }
 
-.dropdown-content a:hover {
+.forum-filters__dropdown-menu a:hover {
   background-color: rgba(84, 78, 108, 0.5);
 }
 
-/* Стили для карточки поста */
-.post_card_container {
-  min-width: 856px;
-  min-height: 747px;
+.forum-post {
+  width: 100%;
+  min-height: 400px;
   border-radius: 10px;
   background-color: rgba(30, 25, 50, 1);
-  padding: 38px 55px 38px 55px;
+  padding: 38px 5%;
 }
 
-.avatar_user_post_box {
+.forum-post__avatar-image {
   width: 26px;
   height: 26px;
   max-width: 26px;
@@ -372,19 +765,19 @@
   overflow: hidden;
 }
 
-.avatar_user_post_image {
+.forum-post__avatar-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.author_published {
+.forum-post__author {
   display: flex;
   align-items: center;
   gap: 13px;
 }
 
-.username_author_post {
+.forum-post__author-name {
   font-family: Arial;
   font-weight: 700;
   font-size: 16px;
@@ -393,7 +786,7 @@
   color: rgba(255, 255, 255, 1);
 }
 
-.time_published_post {
+.forum-post__publish-time {
   font-family: "Inter", sans-serif;
   font-weight: 400;
   font-size: 10px;
@@ -403,7 +796,7 @@
   padding-left: 4px;
 }
 
-.decription_post_content {
+.forum-post__description {
   font-family: "Inter", sans-serif;
   font-weight: 500;
   font-size: 20px;
@@ -413,29 +806,17 @@
   margin-top: 5px;
 }
 
-.post_little_info_box {
+.forum-post__meta {
   display: flex;
   gap: 17px;
   margin-top: 10px;
 }
 
-.counter_time {
+.forum-post__reading-time {
   display: flex;
 }
 
-.time_counter_post {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-  font-family: Arial;
-  font-weight: 700;
-  font-size: 13px;
-  line-height: 13px;
-  letter-spacing: 0%;
-  color: rgba(255, 255, 255, 1);
-}
-
-.views_counter_post {
+.forum-post__meta-item {
   display: flex;
   gap: 6px;
   align-items: center;
@@ -447,13 +828,25 @@
   color: rgba(255, 255, 255, 1);
 }
 
-.keywords_post_container {
+.forum-post__views {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  font-family: Arial;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 13px;
+  letter-spacing: 0%;
+  color: rgba(255, 255, 255, 1);
+}
+
+.forum-post__tags {
   display: flex;
   gap: 25px;
   margin-top: 15px;
 }
 
-.keyword_post {
+.forum-post__tag {
   font-family: "Inter", sans-serif;
   font-weight: 600;
   font-size: 13px;
@@ -466,51 +859,50 @@
   transition: background 0.2s ease;
 }
 
-.keyword_post:hover {
+.forum-post__tag:hover {
   background: rgba(127, 94, 255, 0.4);
 }
 
-.post_card_content {
+.forum-post__content {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-.image_post_container {
+.forum-post__image {
   display: flex;
   justify-content: center;
   margin: 15px 0;
 }
 
-.image_post_content {
-  width: 740px;
-  height: 417px;
-  min-height: 417px;
-  min-width: 740px;
+.forum-post__image-wrapper {
+  width: 100%;
+  max-width: 740px;
+  height: auto;
+  aspect-ratio: 16 / 9;
   border-radius: 8px;
   overflow: hidden;
 }
 
-.image_post_content img {
+.forum-post__image-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* Стили для панели действий с постом */
-.post_set_status_panel {
+.forum-post__actions {
   margin-top: 25px;
   padding-top: 15px;
   border-top: 1px solid rgba(84, 78, 108, 0.5);
 }
 
-.post_actions {
+.forum-post__action-buttons {
   display: flex;
   gap: 26px;
   align-items: center;
 }
 
-.action_item {
+.forum-post__action {
   display: flex;
   align-items: center;
   gap: 6px;
@@ -518,23 +910,23 @@
   transition: all 0.2s ease;
 }
 
-.action_item:hover {
+.forum-post__action:hover {
   transform: scale(1.05);
   opacity: 0.9;
 }
 
-.action_item img {
+.forum-post__action-icon {
   width: 24px;
   height: 24px;
   object-fit: contain;
   transition: transform 0.2s ease;
 }
 
-.action_item:hover img {
+.forum-post__action:hover img {
   transform: scale(1.1);
 }
 
-.counter_action_item {
+.forum-post__action-count {
   font-family: "Inter", sans-serif;
   font-weight: 600;
   font-size: 14px;
@@ -542,31 +934,79 @@
   color: rgba(255, 255, 255, 1);
   margin-left: 2px;
 }
+
+@media (min-width: 768px) {
+  .forum-page__container {
+    flex-direction: row;
+  }
+
+  .forum-page__main-content {
+    flex-wrap: nowrap;
+  }
+
+  .forum-page__left-column {
+    flex: 3;
+  }
+
+  .forum-page__right-column {
+    flex: 1;
+  }
+}
+
+@media (max-width: 767px) {
+  .forum-search__filter-buttons {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .forum-search__filter-button {
+    font-size: 12px;
+  }
+
+  .forum-post {
+    padding: 20px;
+  }
+
+  .forum-filters__header {
+    padding: 20px 0 0 3%;
+  }
+
+  .forum-filters__tabs-container {
+    padding: 0 3%;
+    gap: 10px;
+  }
+}
 </style>
 
 <script>
 export default {
-  name: 'ForumComponent',
   data() {
     return {
-      isDropdownOpen: false
-    }
+      isFilterDropdownOpen: false,
+      selectedFilter: 'all'
+    };
   },
   methods: {
-    toggleDropdown() {
-      this.isDropdownOpen = !this.isDropdownOpen;
+    toggleFilterDropdown() {
+      this.isFilterDropdownOpen = !this.isFilterDropdownOpen;
     },
-    closeDropdown(event) {
-      if (this.$refs.dropdown && !this.$refs.dropdown.contains(event.target)) {
-        this.isDropdownOpen = false;
+    closeFilterDropdown(event) {
+      if (this.$refs.filterButton && !this.$refs.filterButton.contains(event.target)) {
+        this.isFilterDropdownOpen = false;
       }
+    },
+    selectFilter(filter) {
+      this.selectedFilter = filter;
+      this.isFilterDropdownOpen = false;
+      console.log('Selected filter:', filter);
     }
   },
   mounted() {
-    document.addEventListener('click', this.closeDropdown);
+    document.addEventListener('click', this.closeFilterDropdown);
   },
   beforeUnmount() {
-    document.removeEventListener('click', this.closeDropdown);
+    document.removeEventListener('click', this.closeFilterDropdown);
   }
-}
+};
 </script>
