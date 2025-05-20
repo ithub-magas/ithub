@@ -99,7 +99,6 @@
         </div>
         <div class="forum__container_card">
           <div v-for="card in cardData" :key="card.id" class="card">
-            <div class="border-card"></div>
             <div class="card-header">
               <img :src="card.avatar" alt="Аватар" class="avatar" />
               <div class="card-info">
@@ -130,9 +129,12 @@
                   <img src="../assets/Forum/Vector.svg" alt="" width="10px"
                 /></a>
               </div>
-          
+              <hr class="divider" />
+              <div class="info">
+                <span>Другие резюме</span>
+                <a href="">{{ card.moreResumes }}</a>
+              </div>
             </div>
-            
           </div>
         </div>
       </div>
@@ -141,7 +143,7 @@
 </template>
 <script>
 export default {
-  name: "Resume",
+  name: "Forum",
   data() {
     return {
       filterData: {
@@ -233,7 +235,7 @@ export default {
   margin: 2px 0;
 }
 .main {
-  width: 87%;
+  width: 95%;
   padding-top: 50px;
   height: 1000px;
   background-color: #0f0b1f;
@@ -360,30 +362,17 @@ export default {
   flex-wrap: nowrap;
   gap: 20px;
   flex-direction: column;
-  background-color: #272433;
 }
 .card {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  background-color: #272433;
   border-radius: 10px;
   padding: 20px;
   color: #ffffff;
 }
-.border-card{
-      border: 1px solid #7F5EFF;
-      border-radius: 30px;
-      position: absolute;
-      width: 70%;
-      margin-left: -10px;
-      height: 295px;
-      margin-top: -20px;
-}
-
 .card-header {
   display: flex;
   gap: 20px;
   align-items: center;
-      margin-left: 20px;
 }
 .avatar {
   width: 150px;
@@ -393,9 +382,8 @@ export default {
   display: flex;
   flex-direction: column;
   margin-left: 71px;
-  height: 130px;
+  height: 97px;
   justify-content: space-evenly;
-      
 }
 .meta {
   font-size: 12px;
@@ -416,26 +404,22 @@ export default {
 }
 .card-body {
   margin-top: 20px;
-  width: 93%;
-  margin-left: 20px;
 }
 .info {
   display: flex;
   margin-bottom: 10px;
-      margin-top: 10px; 
 }
 .info span {
   width: 240px;
 }
 .one_info {
   margin-left: 240px;
-  color: #7F5EFF;
 }
 .forum__container_filter {
   padding: 20px;
 }
 h3 {
-
+  margin-bottom: 10px;
   color: #ffffff;
   margin-top: 10px;
 }
