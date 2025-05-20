@@ -6,6 +6,7 @@ import Profile from "./pages/Profile.vue";
 import Resume from "./pages/Resume.vue";
 import Portfolio from "./pages/Portfolio.vue"
 import forum from './pages/forum.vue'
+import postcard from "./pages/postcard.vue"
 
 const routes = [
   { path: "/", component: main },
@@ -14,7 +15,8 @@ const routes = [
   { path: "/profile", component: Profile },
   { path: "/resume", component: Resume },
   { path: "/portfolio", component: Portfolio },
-    { path: "/forum", component: forum }
+  { path: "/forum", component: forum },
+  { path: "/postcard", component: postcard}
 ];
 
 const router = createRouter({
