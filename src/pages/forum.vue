@@ -7,7 +7,7 @@
             <div class="forum-search__container">
               <div class="forum-search__input-group">
                 <div class="forum-search__icon-wrapper">
-                  <img src="../assets/PostCard/search.png" alt="Search icon" />
+                  <img src="../assets/PostCard/search.svg" alt="Search icon" />
                 </div>
                 <input
                   placeholder="Поиск"
