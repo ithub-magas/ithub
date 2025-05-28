@@ -1,12 +1,12 @@
 import { createWebHistory, createRouter } from "vue-router";
-import authorization from "./pages/authorization.vue";
-import main from "./pages/main.vue";
-import developers from "./pages/developers.vue";
+import authorization from "./pages/Authorization.vue";
+import main from "./pages/Main.vue";
+import developers from "./pages/Developers.vue";
 import Profile from "./pages/Profile.vue";
 import Resume from "./pages/Resume.vue";
 import Portfolio from "./pages/Portfolio.vue"
-import forum from './pages/forum.vue'
-import postcard from "./pages/postcard.vue"
+import forum from './pages/Forum.vue'
+import postcard from "./pages/Postcard.vue"
 
 const routes = [
   { path: "/", component: main },
