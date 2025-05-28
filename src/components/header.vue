@@ -14,7 +14,7 @@
       <nav :class="{ 'active': isMenuOpen }">
         <router-link to="/" @click="closeMenu">Главная</router-link>
         <router-link to="/projects" @click="closeMenu">Проекты</router-link>
-        <router-link to="/resume" @click="closeMenu">Портфолио</router-link>
+        <router-link to="/portfolio" @click="closeMenu">Портфолио</router-link>
         <router-link to="/forum" @click="closeMenu">Форум</router-link>
         <router-link to="/contacts" @click="closeMenu">Контакты</router-link>
         <router-link to="/about" @click="closeMenu">О нас</router-link>

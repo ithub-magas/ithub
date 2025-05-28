@@ -3,7 +3,9 @@ import Authorization from "./pages/authorization.vue";
 import Main from "./pages/main.vue";
 import Developers from "./pages/developers.vue";
 import Profile from "./pages/Profile.vue";
-import Resume from "./pages/Resume.vue";
+import Resume from "./pages/Portfolio.vue";
+import forum from "./pages/forum.vue";
+import postcard from "./pages/postcard.vue";
 
 // Объединенные импорты
 import Projects from "./pages/Projects.vue";
@@ -16,6 +18,8 @@ const routes = [
   { path: "/dev", component: Developers },
   { path: "/profile", component: Profile },
   { path: "/resume", component: Resume },
+  { path: "/forum", component: forum },
+  { path: "/postcard", component: postcard},
 
   // Объединенные маршруты
   { path: "/projects", component: Projects },
