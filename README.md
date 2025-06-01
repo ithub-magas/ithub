@@ -1,7 +1,5 @@
 
-
-Ссылка https://ithub-git-adamaushev-aks-projects-9b0bfe44.vercel.app/
-
+https://ithub-mu.vercel.app/
 
 # **Проект: Научная социальная сеть `MagasITHUB`**  
 > Разрабатывается студентами колледжа **IT Hub Magas**  

@@ -59,9 +59,13 @@
       </div>
     </div>
   </div>
+
+  <Background />
 </template>
 
 <script>
+import Background from '../components/Background.vue';
+
 export default {
   props: {
     avatarImage: {
@@ -87,22 +91,20 @@ export default {
       default: "https://avatars.mds.yandex.net/i?id=a0c0a1184696e2c1bc5ad5cb3970b589_l-5435996-images-thumbs&n=13",
     },
   },
+  components: {
+    Background
+  }
 };
 </script>
 
-<style>
-body {
-  background: #0f0b1f;
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-}
-
+<style scoped>
 .post-container {
   display: flex;
   gap: 20px;
   max-width: 1200px;
   width: 100%;
+  padding: 20px;
+  margin: 0 auto;
 }
 
 .forum-post {

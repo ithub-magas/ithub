@@ -65,6 +65,7 @@
 
 <script>
 import axios from "axios";
+import { useAuthStore } from '../stores/auth';
 
 const API_URL = "https://api.newlxp.ru/graphql";
 
@@ -80,6 +81,7 @@ export default {
   },
   methods: {
     async handleSubmit() {
+      const authStore = useAuthStore();
       this.loading = true;
       this.error = "";
 
@@ -96,8 +98,8 @@ export default {
         const diary = await this.getDiary(token, userId);
         const userData = await this.getUserData(token);
         localStorage.setItem("access", token);
-        localStorage.setItem("student", JSON.stringify(userData));
         localStorage.setItem("diary", JSON.stringify(diary));
+        authStore.setUser(userData);
         this.$router.push("/profile");
       } catch (error) {
         this.error =

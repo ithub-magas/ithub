@@ -373,6 +373,8 @@
       </div>
     </div>
   </div>
+
+  <Background />
 </template>
 
 <style scoped>
@@ -523,7 +525,6 @@
 }
 
 .forum-page {
-  background-color: #0f0b1f;
   width: 100%;
   min-height: 100vh;
   padding-inline: 5vw;
@@ -980,12 +981,17 @@
 </style>
 
 <script>
+import Background from '../components/Background.vue';
+
 export default {
   data() {
     return {
       isFilterDropdownOpen: false,
       selectedFilter: 'all'
     };
+  },
+  components: {
+    Background
   },
   methods: {
     toggleFilterDropdown() {
